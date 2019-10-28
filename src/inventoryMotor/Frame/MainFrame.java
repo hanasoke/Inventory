@@ -35,6 +35,30 @@ public class MainFrame extends javax.swing.JFrame {
         clearForm();
     }
     
+    public String mesin(String mesin) {
+        return mesin;
+    }
+    
+    public String brand(String brand) {
+        return brand;
+    }
+    
+    public String nama(String nama) {
+        return nama;
+    }
+    
+    public String type(String type) {
+        return type;
+    }
+    
+    public String warna(String warna) {
+        return warna;
+    }
+    
+    public String jumlah(String jumlah) {
+        return jumlah;
+    }
+    
     private void loadTable(){
         String sql = "select * from motor";
         controller.get(tb_motor, sql);
@@ -91,12 +115,18 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         btn_search = new javax.swing.JButton();
         btn_search1 = new javax.swing.JButton();
+        btn_ambilMotor = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(102, 255, 102));
 
         cb_mesin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "CM001", "CM002", "RC302", "GONE2", "CM034" }));
+        cb_mesin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_mesinActionPerformed(evt);
+            }
+        });
 
         cb_brand.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Brand", "Yamaha ", "Honda ", "Suzuki" }));
 
@@ -147,6 +177,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tb_motor);
 
+        btn_submit.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btn_submit.setText("Submit");
         btn_submit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,6 +185,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        btn_update.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btn_update.setText("Update");
         btn_update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -161,6 +193,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        btn_delete.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btn_delete.setText("Delete");
         btn_delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -182,6 +215,14 @@ public class MainFrame extends javax.swing.JFrame {
         btn_search1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_search1ActionPerformed(evt);
+            }
+        });
+
+        btn_ambilMotor.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btn_ambilMotor.setText("Ambil Motor");
+        btn_ambilMotor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ambilMotorActionPerformed(evt);
             }
         });
 
@@ -224,9 +265,12 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGap(25, 25, 25)
                         .addComponent(btn_submit)
                         .addGap(18, 18, 18)
-                        .addComponent(btn_update)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_delete)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btn_update)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btn_delete))
+                            .addComponent(btn_ambilMotor))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -279,7 +323,9 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(btn_update)
                             .addComponent(btn_delete)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_ambilMotor)
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -369,6 +415,13 @@ public class MainFrame extends javax.swing.JFrame {
             System.out.println(e.getMessage());
         }
         
+        MainFrame lg = new MainFrame();
+        String mesin = lg.mesin(cb_mesin.getSelectedItem().toString());
+        String brand = lg.brand(cb_brand.getSelectedItem().toString());
+        String nama = lg.brand(tf_nama.getText());
+        String type = lg.type(cb_type.getSelectedItem().toString());
+        String warna = lg.warna(tf_warna.getText());
+        String jumlah = lg.warna(tf_jumlah.getText());
     }//GEN-LAST:event_btn_submitActionPerformed
 
     private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
@@ -385,7 +438,7 @@ public class MainFrame extends javax.swing.JFrame {
         String jumlah = tf_jumlah.getText();
         
         String sql = "UPDATE motor set mesin = ?, brand = ?, name = ?, types = ?, "
-                + "manufacture = ?, color = ?, jumlah = ? WHERE id = ?";
+                + "manufacture = ?, color = ?, jumlah = ? WHERE id_motor = ?";
         
         Map<Integer, Object> map = new HashMap<>();
         map.put(1, mesin);
@@ -418,7 +471,7 @@ public class MainFrame extends javax.swing.JFrame {
             Helper helper = new Helper();
             String manufacture = helper.parseDataToDatabase(dp_manufacture);
 
-            String sql = "DELETE FROM motor WHERE id = ?";
+            String sql = "DELETE FROM motor WHERE id_motor = ?";
 
             Map<Integer, Object> map = new HashMap<>();
             map.put(1, this.motor_id);
@@ -450,6 +503,18 @@ public class MainFrame extends javax.swing.JFrame {
         String sql = "SELECT * FROM motor WHERE brand LIKE '%"+ search +"%';";
         controller.get(tb_motor, sql);
     }//GEN-LAST:event_btn_search1ActionPerformed
+
+    private void cb_mesinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_mesinActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cb_mesinActionPerformed
+
+    private void btn_ambilMotorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ambilMotorActionPerformed
+        // TODO add your handling code here:
+        BuyMotor bm = new BuyMotor();
+        bm.setVisible(true);
+        this.setVisible(false);
+             
+    }//GEN-LAST:event_btn_ambilMotorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -487,6 +552,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_ambilMotor;
     private javax.swing.JButton btn_delete;
     private javax.swing.JButton btn_search;
     private javax.swing.JButton btn_search1;
