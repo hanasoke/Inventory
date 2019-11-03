@@ -1,7 +1,7 @@
 package inventoryMotor;
 
 import inventoryMotor.Connection.Koneksi;
-import inventoryMotor.Frame.MainFrame;
+import inventoryMotor.Frame.Login;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -25,7 +25,7 @@ public class main {
 //        Koneksi koneksi = new Koneksi();
 //        koneksi.open();
         
-        MainFrame frame = new MainFrame();
+        Login frame = new Login();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         

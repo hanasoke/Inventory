@@ -51,12 +51,47 @@ public class MainFrame extends javax.swing.JFrame {
         return type;
     }
     
+    public String manufacture(String manufacture) {
+        return manufacture;
+    }
+    
     public String warna(String warna) {
         return warna;
     }
     
-    public String jumlah(String jumlah) {
+    public String jumlah(int jumlahInt) {
+        String jumlah = Integer.toString(jumlahInt);
         return jumlah;
+    }
+    
+    public int illegalArgument(int motor, int amount)
+    {
+        if (motor<=0 || amount<=0) {
+            throw new IllegalArgumentException("id motor adalah : " + motor + "dan jumlahnya adalah : " + amount);
+        }
+        return motor/amount;   
+    }
+    
+    public String assertion(int motorInt, int amountInt)
+    {  
+       String total;
+       String motor = Integer.toString(motorInt);
+       String take = Integer.toString(amountInt);
+       
+       total = motor + take;
+       
+       return total;
+    }
+    
+    public int timeout()
+    {
+        while(true);
+    }
+    
+    public int StackOverflowCall(int motor)
+    {
+        MainFrame ts = new MainFrame();
+        return motor * StackOverflowCall(motor);
     }
     
     private void loadTable(){
@@ -201,10 +236,16 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        tf_search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_searchActionPerformed(evt);
+            }
+        });
+
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setText("Pencarian");
 
-        btn_search.setText("Cari dengan Nama");
+        btn_search.setText("Cari nomor mesin");
         btn_search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_searchActionPerformed(evt);
@@ -405,25 +446,29 @@ public class MainFrame extends javax.swing.JFrame {
         map.put(6, warna);
         map.put(7, jumlah);
         
-        if (!controller.preparedStatement(map, sql)) {
-            JOptionPane.showMessageDialog(null, "Gagal menambahkan Data");
+        if (controller.preparedStatement(map, sql)) {
+            JOptionPane.showMessageDialog(null, "Berhasil Menambahkan Data");  
+            clearForm();
+            loadTable();
         }
-        clearForm();
-        loadTable();
-        JOptionPane.showMessageDialog(null, "Berhasil Menambahkan Data");
+        else {
+        JOptionPane.showMessageDialog(null, "Gagal menambahkan Data");        
+        }
+        
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        
-        MainFrame lg = new MainFrame();
-        String mesin = lg.mesin(cb_mesin.getSelectedItem().toString());
-        String brand = lg.brand(cb_brand.getSelectedItem().toString());
-        String nama = lg.brand(tf_nama.getText());
-        String type = lg.type(cb_type.getSelectedItem().toString());
-        String warna = lg.warna(tf_warna.getText());
-        String jumlah = lg.warna(tf_jumlah.getText());
     }//GEN-LAST:event_btn_submitActionPerformed
-
+    
+        public String submit(String mesin, String brand, String nama, String type, String manufacture, String warna, int jumlah) {
+       
+        String total;
+        
+        total = mesin + brand + nama + type + manufacture + warna + jumlah;
+        
+        return total;  
+    }
+    
     private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
         try {
         // TODO add your handling code here:
@@ -462,9 +507,17 @@ public class MainFrame extends javax.swing.JFrame {
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
-        
     }//GEN-LAST:event_btn_updateActionPerformed
 
+    public String update(String mesin, String brand, String nama, String type, String manufacture, String warna, int jumlah) {
+       
+        String total;
+        
+        total = mesin + brand + nama + type + manufacture + warna + jumlah;
+        
+        return total;  
+    }
+    
     private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
         try {
             // TODO add your handling code here:
@@ -487,16 +540,28 @@ public class MainFrame extends javax.swing.JFrame {
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
-        
     }//GEN-LAST:event_btn_deleteActionPerformed
 
+    public String delete(String mesin, String brand, String nama, String type, String manufacture, String warna, int jumlah) {
+       
+        String total;
+        
+        total = mesin + brand + nama + type + manufacture + warna + jumlah;
+        
+        return total;  
+    }
+    
     private void btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_searchActionPerformed
         // TODO add your handling code here:
         String search = tf_search.getText();
-        String sql = "SELECT * FROM motor WHERE name LIKE '%" + search +"%';";
+        String sql = "SELECT * FROM motor WHERE mesin LIKE '%" + search +"%';";
         controller.get(tb_motor, sql);
     }//GEN-LAST:event_btn_searchActionPerformed
 
+    public String searchMesin(String mesin) {
+        return mesin;  
+    }
+    
     private void btn_search1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_search1ActionPerformed
         // TODO add your handling code here:
         String search = tf_search.getText();
@@ -504,17 +569,25 @@ public class MainFrame extends javax.swing.JFrame {
         controller.get(tb_motor, sql);
     }//GEN-LAST:event_btn_search1ActionPerformed
 
+    public String searchBrand(String brand) {
+        return brand;  
+    }
+    
     private void cb_mesinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_mesinActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cb_mesinActionPerformed
 
     private void btn_ambilMotorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ambilMotorActionPerformed
         // TODO add your handling code here:
-        BuyMotor bm = new BuyMotor();
+        TakeMotor bm = new TakeMotor();
         bm.setVisible(true);
         this.setVisible(false);
              
     }//GEN-LAST:event_btn_ambilMotorActionPerformed
+
+    private void tf_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_searchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_searchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -585,4 +658,5 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField tf_search;
     private javax.swing.JTextField tf_warna;
     // End of variables declaration//GEN-END:variables
+
 }

@@ -1,0 +1,663 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>MainFrame.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Inventory&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">inventoryMotor.Frame</a> &gt; <span class="el_source">MainFrame.java</span></div><h1>MainFrame.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package inventoryMotor.Frame;
+
+import inventoryMotor.Controller.MainController;
+import inventoryMotor.Helper.Helper;
+import java.text.ParseException;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author hanas_bp
+ */
+public class MainFrame extends javax.swing.JFrame {
+    private final MainController controller;
+    private String motor_id;
+
+    /**
+     * Creates new form MainFrame
+     */
+<span class="fc" id="L29">    public MainFrame() {</span>
+<span class="fc" id="L30">        initComponents();</span>
+<span class="fc" id="L31">        MainController mainController = new MainController();</span>
+<span class="fc" id="L32">        controller = mainController;</span>
+        
+<span class="fc" id="L34">        loadTable();</span>
+<span class="fc" id="L35">        clearForm();</span>
+<span class="fc" id="L36">    }</span>
+    
+    public String mesin(String mesin) {
+<span class="nc" id="L39">        return mesin;</span>
+    }
+    
+    public String brand(String brand) {
+<span class="nc" id="L43">        return brand;</span>
+    }
+    
+    public String nama(String nama) {
+<span class="fc" id="L47">        return nama;</span>
+    }
+    
+    public String type(String type) {
+<span class="fc" id="L51">        return type;</span>
+    }
+    
+    public String manufacture(String manufacture) {
+<span class="nc" id="L55">        return manufacture;</span>
+    }
+    
+    public String warna(String warna) {
+<span class="fc" id="L59">        return warna;</span>
+    }
+    
+    public String jumlah(int jumlahInt) {
+<span class="fc" id="L63">        String jumlah = Integer.toString(jumlahInt);</span>
+<span class="fc" id="L64">        return jumlah;</span>
+    }
+    
+    public int illegalArgument(int motor, int amount)
+    {
+<span class="pc bpc" id="L69" title="3 of 4 branches missed.">        if (motor&lt;=0 || amount&lt;=0) {</span>
+<span class="fc" id="L70">            throw new IllegalArgumentException(&quot;id motor adalah : &quot; + motor + &quot;dan jumlahnya adalah : &quot; + amount);</span>
+        }
+<span class="nc" id="L72">        return motor/amount;   </span>
+    }
+    
+    public String assertion(int motorInt, int amountInt)
+    {  
+       String total;
+<span class="fc" id="L78">       String motor = Integer.toString(motorInt);</span>
+<span class="fc" id="L79">       String take = Integer.toString(amountInt);</span>
+       
+<span class="fc" id="L81">       total = motor + take;</span>
+       
+<span class="fc" id="L83">       return total;</span>
+    }
+    
+    public int timeout()
+    {
+<span class="nc" id="L88">        while(true);</span>
+    }
+    
+    public int StackOverflowCall(int motor)
+    {
+<span class="nc" id="L93">        MainFrame ts = new MainFrame();</span>
+<span class="nc" id="L94">        return motor * StackOverflowCall(motor);</span>
+    }
+    
+    private void loadTable(){
+<span class="fc" id="L98">        String sql = &quot;select * from motor&quot;;</span>
+<span class="fc" id="L99">        controller.get(tb_motor, sql);</span>
+<span class="fc" id="L100">        System.out.println(&quot;Worked!&quot;);</span>
+<span class="fc" id="L101">    }</span>
+    
+    private void clearForm(){
+<span class="fc" id="L104">        cb_mesin.setSelectedIndex(0);</span>
+<span class="fc" id="L105">        cb_brand.setSelectedIndex(0);</span>
+<span class="fc" id="L106">        tf_nama.setText(null);</span>
+<span class="fc" id="L107">        cb_type.setSelectedIndex(0);</span>
+<span class="fc" id="L108">        dp_manufacture.setDate(null);</span>
+<span class="fc" id="L109">        btn_update.setEnabled(false);</span>
+<span class="fc" id="L110">        btn_delete.setEnabled(false);</span>
+<span class="fc" id="L111">    }</span>
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings(&quot;unchecked&quot;)
+    // &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+<span class="fc" id="L122">        dateTime1 = new org.joda.time.DateTime();</span>
+<span class="fc" id="L123">        dateTime2 = new org.joda.time.DateTime();</span>
+<span class="fc" id="L124">        dateTime3 = new org.joda.time.DateTime();</span>
+<span class="fc" id="L125">        dateTime4 = new org.joda.time.DateTime();</span>
+<span class="fc" id="L126">        dateTime5 = new org.joda.time.DateTime();</span>
+<span class="fc" id="L127">        dateTime6 = new org.joda.time.DateTime();</span>
+<span class="fc" id="L128">        dateTime7 = new org.joda.time.DateTime();</span>
+<span class="fc" id="L129">        jPanel1 = new javax.swing.JPanel();</span>
+<span class="fc" id="L130">        cb_mesin = new javax.swing.JComboBox&lt;&gt;();</span>
+<span class="fc" id="L131">        cb_brand = new javax.swing.JComboBox&lt;&gt;();</span>
+<span class="fc" id="L132">        tf_nama = new javax.swing.JTextField();</span>
+<span class="fc" id="L133">        cb_type = new javax.swing.JComboBox&lt;&gt;();</span>
+<span class="fc" id="L134">        dp_manufacture = new org.jdesktop.swingx.JXDatePicker();</span>
+<span class="fc" id="L135">        tf_warna = new javax.swing.JTextField();</span>
+<span class="fc" id="L136">        tf_jumlah = new javax.swing.JTextField();</span>
+<span class="fc" id="L137">        jLabel1 = new javax.swing.JLabel();</span>
+<span class="fc" id="L138">        jLabel2 = new javax.swing.JLabel();</span>
+<span class="fc" id="L139">        jLabel3 = new javax.swing.JLabel();</span>
+<span class="fc" id="L140">        jLabel4 = new javax.swing.JLabel();</span>
+<span class="fc" id="L141">        jLabel5 = new javax.swing.JLabel();</span>
+<span class="fc" id="L142">        jLabel6 = new javax.swing.JLabel();</span>
+<span class="fc" id="L143">        jLabel7 = new javax.swing.JLabel();</span>
+<span class="fc" id="L144">        jScrollPane1 = new javax.swing.JScrollPane();</span>
+<span class="fc" id="L145">        tb_motor = new javax.swing.JTable();</span>
+<span class="fc" id="L146">        btn_submit = new javax.swing.JButton();</span>
+<span class="fc" id="L147">        btn_update = new javax.swing.JButton();</span>
+<span class="fc" id="L148">        btn_delete = new javax.swing.JButton();</span>
+<span class="fc" id="L149">        tf_search = new javax.swing.JTextField();</span>
+<span class="fc" id="L150">        jLabel8 = new javax.swing.JLabel();</span>
+<span class="fc" id="L151">        btn_search = new javax.swing.JButton();</span>
+<span class="fc" id="L152">        btn_search1 = new javax.swing.JButton();</span>
+<span class="fc" id="L153">        btn_ambilMotor = new javax.swing.JButton();</span>
+
+<span class="fc" id="L155">        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);</span>
+
+<span class="fc" id="L157">        jPanel1.setBackground(new java.awt.Color(102, 255, 102));</span>
+
+<span class="fc" id="L159">        cb_mesin.setModel(new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] { &quot;Select&quot;, &quot;CM001&quot;, &quot;CM002&quot;, &quot;RC302&quot;, &quot;GONE2&quot;, &quot;CM034&quot; }));</span>
+<span class="fc" id="L160">        cb_mesin.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="fc" id="L162">                cb_mesinActionPerformed(evt);</span>
+<span class="fc" id="L163">            }</span>
+        });
+
+<span class="fc" id="L166">        cb_brand.setModel(new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] { &quot;Select Brand&quot;, &quot;Yamaha &quot;, &quot;Honda &quot;, &quot;Suzuki&quot; }));</span>
+
+<span class="fc" id="L168">        cb_type.setModel(new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] { &quot;Select Type&quot;, &quot;Manual&quot;, &quot;Matic&quot; }));</span>
+
+<span class="fc" id="L170">        dp_manufacture.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L172">                dp_manufactureActionPerformed(evt);</span>
+<span class="nc" id="L173">            }</span>
+        });
+
+<span class="fc" id="L176">        jLabel1.setFont(new java.awt.Font(&quot;Tahoma&quot;, 0, 18)); // NOI18N</span>
+<span class="fc" id="L177">        jLabel1.setText(&quot;Nomor Mesin&quot;);</span>
+
+<span class="fc" id="L179">        jLabel2.setFont(new java.awt.Font(&quot;Tahoma&quot;, 0, 18)); // NOI18N</span>
+<span class="fc" id="L180">        jLabel2.setText(&quot;Brand&quot;);</span>
+
+<span class="fc" id="L182">        jLabel3.setFont(new java.awt.Font(&quot;Tahoma&quot;, 0, 18)); // NOI18N</span>
+<span class="fc" id="L183">        jLabel3.setText(&quot;Nama Motor&quot;);</span>
+
+<span class="fc" id="L185">        jLabel4.setFont(new java.awt.Font(&quot;Tahoma&quot;, 0, 18)); // NOI18N</span>
+<span class="fc" id="L186">        jLabel4.setText(&quot;Type&quot;);</span>
+
+<span class="fc" id="L188">        jLabel5.setFont(new java.awt.Font(&quot;Tahoma&quot;, 0, 18)); // NOI18N</span>
+<span class="fc" id="L189">        jLabel5.setText(&quot;Manufacture&quot;);</span>
+
+<span class="fc" id="L191">        jLabel6.setFont(new java.awt.Font(&quot;Tahoma&quot;, 0, 18)); // NOI18N</span>
+<span class="fc" id="L192">        jLabel6.setText(&quot;Warna&quot;);</span>
+
+<span class="fc" id="L194">        jLabel7.setFont(new java.awt.Font(&quot;Tahoma&quot;, 0, 18)); // NOI18N</span>
+<span class="fc" id="L195">        jLabel7.setText(&quot;Jumlah&quot;);</span>
+
+<span class="fc" id="L197">        tb_motor.setModel(new javax.swing.table.DefaultTableModel(</span>
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                &quot;Title 1&quot;, &quot;Title 2&quot;, &quot;Title 3&quot;, &quot;Title 4&quot;
+            }
+        ));
+<span class="fc" id="L208">        tb_motor.addMouseListener(new java.awt.event.MouseAdapter() {</span>
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+<span class="nc" id="L210">                tb_motorMouseClicked(evt);</span>
+<span class="nc" id="L211">            }</span>
+        });
+<span class="fc" id="L213">        jScrollPane1.setViewportView(tb_motor);</span>
+
+<span class="fc" id="L215">        btn_submit.setFont(new java.awt.Font(&quot;Tahoma&quot;, 0, 18)); // NOI18N</span>
+<span class="fc" id="L216">        btn_submit.setText(&quot;Submit&quot;);</span>
+<span class="fc" id="L217">        btn_submit.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L219">                btn_submitActionPerformed(evt);</span>
+<span class="nc" id="L220">            }</span>
+        });
+
+<span class="fc" id="L223">        btn_update.setFont(new java.awt.Font(&quot;Tahoma&quot;, 0, 18)); // NOI18N</span>
+<span class="fc" id="L224">        btn_update.setText(&quot;Update&quot;);</span>
+<span class="fc" id="L225">        btn_update.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L227">                btn_updateActionPerformed(evt);</span>
+<span class="nc" id="L228">            }</span>
+        });
+
+<span class="fc" id="L231">        btn_delete.setFont(new java.awt.Font(&quot;Tahoma&quot;, 0, 18)); // NOI18N</span>
+<span class="fc" id="L232">        btn_delete.setText(&quot;Delete&quot;);</span>
+<span class="fc" id="L233">        btn_delete.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L235">                btn_deleteActionPerformed(evt);</span>
+<span class="nc" id="L236">            }</span>
+        });
+
+<span class="fc" id="L239">        tf_search.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L241">                tf_searchActionPerformed(evt);</span>
+<span class="nc" id="L242">            }</span>
+        });
+
+<span class="fc" id="L245">        jLabel8.setFont(new java.awt.Font(&quot;Tahoma&quot;, 0, 18)); // NOI18N</span>
+<span class="fc" id="L246">        jLabel8.setText(&quot;Pencarian&quot;);</span>
+
+<span class="fc" id="L248">        btn_search.setText(&quot;Cari nomor mesin&quot;);</span>
+<span class="fc" id="L249">        btn_search.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L251">                btn_searchActionPerformed(evt);</span>
+<span class="nc" id="L252">            }</span>
+        });
+
+<span class="fc" id="L255">        btn_search1.setText(&quot;Cari Brand&quot;);</span>
+<span class="fc" id="L256">        btn_search1.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L258">                btn_search1ActionPerformed(evt);</span>
+<span class="nc" id="L259">            }</span>
+        });
+
+<span class="fc" id="L262">        btn_ambilMotor.setFont(new java.awt.Font(&quot;Tahoma&quot;, 0, 18)); // NOI18N</span>
+<span class="fc" id="L263">        btn_ambilMotor.setText(&quot;Ambil Motor&quot;);</span>
+<span class="fc" id="L264">        btn_ambilMotor.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L266">                btn_ambilMotorActionPerformed(evt);</span>
+<span class="nc" id="L267">            }</span>
+        });
+
+<span class="fc" id="L270">        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);</span>
+<span class="fc" id="L271">        jPanel1.setLayout(jPanel1Layout);</span>
+<span class="fc" id="L272">        jPanel1Layout.setHorizontalGroup(</span>
+<span class="fc" id="L273">            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="fc" id="L274">            .addGroup(jPanel1Layout.createSequentialGroup()</span>
+<span class="fc" id="L275">                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="fc" id="L276">                    .addGroup(jPanel1Layout.createSequentialGroup()</span>
+<span class="fc" id="L277">                        .addContainerGap()</span>
+<span class="fc" id="L278">                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="fc" id="L279">                            .addComponent(jLabel1)</span>
+<span class="fc" id="L280">                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="fc" id="L281">                            .addComponent(jLabel4)</span>
+<span class="fc" id="L282">                            .addComponent(jLabel5)</span>
+<span class="fc" id="L283">                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="fc" id="L284">                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="fc" id="L285">                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="fc" id="L286">                        .addGap(18, 18, 18)</span>
+<span class="fc" id="L287">                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)</span>
+<span class="fc" id="L288">                            .addComponent(tf_jumlah)</span>
+<span class="fc" id="L289">                            .addComponent(dp_manufacture, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+<span class="fc" id="L290">                            .addComponent(tf_warna)</span>
+<span class="fc" id="L291">                            .addComponent(cb_type, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+<span class="fc" id="L292">                            .addComponent(tf_nama)</span>
+<span class="fc" id="L293">                            .addComponent(cb_brand, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+<span class="fc" id="L294">                            .addComponent(cb_mesin, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="fc" id="L295">                        .addGap(18, 18, 18)</span>
+<span class="fc" id="L296">                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="fc" id="L297">                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="fc" id="L298">                            .addGroup(jPanel1Layout.createSequentialGroup()</span>
+<span class="fc" id="L299">                                .addComponent(tf_search, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="fc" id="L300">                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="fc" id="L301">                                .addComponent(btn_search)</span>
+<span class="fc" id="L302">                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="fc" id="L303">                                .addComponent(btn_search1))</span>
+<span class="fc" id="L304">                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))</span>
+<span class="fc" id="L305">                    .addGroup(jPanel1Layout.createSequentialGroup()</span>
+<span class="fc" id="L306">                        .addGap(25, 25, 25)</span>
+<span class="fc" id="L307">                        .addComponent(btn_submit)</span>
+<span class="fc" id="L308">                        .addGap(18, 18, 18)</span>
+<span class="fc" id="L309">                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="fc" id="L310">                            .addGroup(jPanel1Layout.createSequentialGroup()</span>
+<span class="fc" id="L311">                                .addComponent(btn_update)</span>
+<span class="fc" id="L312">                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)</span>
+<span class="fc" id="L313">                                .addComponent(btn_delete))</span>
+<span class="fc" id="L314">                            .addComponent(btn_ambilMotor))))</span>
+<span class="fc" id="L315">                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))</span>
+        );
+<span class="fc" id="L317">        jPanel1Layout.setVerticalGroup(</span>
+<span class="fc" id="L318">            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="fc" id="L319">            .addGroup(jPanel1Layout.createSequentialGroup()</span>
+<span class="fc" id="L320">                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="fc" id="L321">                    .addGroup(jPanel1Layout.createSequentialGroup()</span>
+<span class="fc" id="L322">                        .addGap(69, 69, 69)</span>
+<span class="fc" id="L323">                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="fc" id="L324">                            .addComponent(cb_mesin, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="fc" id="L325">                            .addComponent(jLabel1))</span>
+<span class="fc" id="L326">                        .addGap(21, 21, 21))</span>
+<span class="fc" id="L327">                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()</span>
+<span class="fc" id="L328">                        .addGap(59, 59, 59)</span>
+<span class="fc" id="L329">                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="fc" id="L330">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)</span>
+<span class="fc" id="L331">                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="fc" id="L332">                            .addComponent(tf_search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="fc" id="L333">                            .addComponent(btn_search)</span>
+<span class="fc" id="L334">                            .addComponent(btn_search1))</span>
+<span class="fc" id="L335">                        .addGap(18, 18, 18)))</span>
+<span class="fc" id="L336">                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="fc" id="L337">                    .addGroup(jPanel1Layout.createSequentialGroup()</span>
+<span class="fc" id="L338">                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="fc" id="L339">                            .addComponent(cb_brand, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="fc" id="L340">                            .addComponent(jLabel2))</span>
+<span class="fc" id="L341">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="fc" id="L342">                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="fc" id="L343">                            .addComponent(tf_nama, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="fc" id="L344">                            .addComponent(jLabel3))</span>
+<span class="fc" id="L345">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)</span>
+<span class="fc" id="L346">                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="fc" id="L347">                            .addComponent(cb_type, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="fc" id="L348">                            .addComponent(jLabel4))</span>
+<span class="fc" id="L349">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)</span>
+<span class="fc" id="L350">                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="fc" id="L351">                            .addComponent(dp_manufacture, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="fc" id="L352">                            .addComponent(jLabel5))</span>
+<span class="fc" id="L353">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)</span>
+<span class="fc" id="L354">                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="fc" id="L355">                            .addComponent(tf_warna, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="fc" id="L356">                            .addComponent(jLabel6))</span>
+<span class="fc" id="L357">                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)</span>
+<span class="fc" id="L358">                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="fc" id="L359">                            .addComponent(tf_jumlah, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="fc" id="L360">                            .addComponent(jLabel7))</span>
+<span class="fc" id="L361">                        .addGap(18, 18, 18)</span>
+<span class="fc" id="L362">                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)</span>
+<span class="fc" id="L363">                            .addComponent(btn_submit)</span>
+<span class="fc" id="L364">                            .addComponent(btn_update)</span>
+<span class="fc" id="L365">                            .addComponent(btn_delete)))</span>
+<span class="fc" id="L366">                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))</span>
+<span class="fc" id="L367">                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)</span>
+<span class="fc" id="L368">                .addComponent(btn_ambilMotor)</span>
+<span class="fc" id="L369">                .addContainerGap(68, Short.MAX_VALUE))</span>
+        );
+
+<span class="fc" id="L372">        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());</span>
+<span class="fc" id="L373">        getContentPane().setLayout(layout);</span>
+<span class="fc" id="L374">        layout.setHorizontalGroup(</span>
+<span class="fc" id="L375">            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="fc" id="L376">            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+        );
+<span class="fc" id="L378">        layout.setVerticalGroup(</span>
+<span class="fc" id="L379">            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="fc" id="L380">            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+        );
+
+<span class="fc" id="L383">        pack();</span>
+<span class="fc" id="L384">    }// &lt;/editor-fold&gt;//GEN-END:initComponents</span>
+
+    private void dp_manufactureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dp_manufactureActionPerformed
+        // TODO add your handling code here:
+<span class="nc" id="L388">    }//GEN-LAST:event_dp_manufactureActionPerformed</span>
+
+    private void tb_motorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_motorMouseClicked
+
+        try {
+        // TODO add your handling code here:      
+<span class="nc" id="L394">        Helper helper = new Helper();</span>
+<span class="nc" id="L395">        String id = helper.getValueRows(tb_motor, 0);</span>
+<span class="nc" id="L396">        String mesin = helper.getValueRows(tb_motor, 1);</span>
+<span class="nc" id="L397">        String brand = helper.getValueRows(tb_motor, 2);</span>
+<span class="nc" id="L398">        String nama = helper.getValueRows(tb_motor, 3);</span>
+<span class="nc" id="L399">        String type = helper.getValueRows(tb_motor, 4);</span>
+<span class="nc" id="L400">        String manufacture = helper.getValueRows(tb_motor, 5);</span>
+<span class="nc" id="L401">        String warna = helper.getValueRows(tb_motor, 6);</span>
+<span class="nc" id="L402">        String jumlah = helper.getValueRows(tb_motor, 7);</span>
+        
+<span class="nc" id="L404">        btn_update.setEnabled(true);</span>
+<span class="nc" id="L405">        btn_delete.setEnabled(true);</span>
+        
+<span class="nc" id="L407">        this.motor_id = id;</span>
+<span class="nc" id="L408">        cb_mesin.setSelectedItem(mesin);</span>
+<span class="nc" id="L409">        cb_brand.setSelectedItem(brand);</span>
+<span class="nc" id="L410">        tf_nama.setText(nama);</span>
+<span class="nc" id="L411">        cb_type.setSelectedItem(type);</span>
+<span class="nc" id="L412">        dp_manufacture.setDate(new Date(helper.getParsedDate(manufacture)));</span>
+<span class="nc" id="L413">        tf_warna.setText(warna);</span>
+<span class="nc" id="L414">        tf_jumlah.setText(jumlah);</span>
+        
+<span class="nc" id="L416">        } catch (ParseException ex) {</span>
+<span class="nc" id="L417">            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L418">        }</span>
+        
+        
+        
+<span class="nc" id="L422">    }//GEN-LAST:event_tb_motorMouseClicked</span>
+
+    private void btn_submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_submitActionPerformed
+        try {
+        // TODO add your handling code here:
+<span class="nc" id="L427">        String mesin = cb_mesin.getSelectedItem().toString();</span>
+<span class="nc" id="L428">        String brand = cb_brand.getSelectedItem().toString();</span>
+<span class="nc" id="L429">        String nama = tf_nama.getText();</span>
+<span class="nc" id="L430">        String type = cb_type.getSelectedItem().toString();</span>
+        
+<span class="nc" id="L432">        Helper helper = new Helper();</span>
+<span class="nc" id="L433">        String manufacture = helper.parseDataToDatabase(dp_manufacture);</span>
+<span class="nc" id="L434">        String warna = tf_warna.getText();</span>
+<span class="nc" id="L435">        String jumlah = tf_jumlah.getText();</span>
+        
+<span class="nc" id="L437">        String sql = &quot;INSERT INTO motor (mesin, brand, name, types, &quot;</span>
+                + &quot;manufacture, color, jumlah) values (?,?,?,?,?,?,?)&quot;;
+        
+<span class="nc" id="L440">        Map&lt;Integer, Object&gt; map = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L441">        map.put(1, mesin);</span>
+<span class="nc" id="L442">        map.put(2, brand);</span>
+<span class="nc" id="L443">        map.put(3, nama);</span>
+<span class="nc" id="L444">        map.put(4, type);</span>
+<span class="nc" id="L445">        map.put(5, manufacture);</span>
+<span class="nc" id="L446">        map.put(6, warna);</span>
+<span class="nc" id="L447">        map.put(7, jumlah);</span>
+        
+<span class="nc bnc" id="L449" title="All 2 branches missed.">        if (controller.preparedStatement(map, sql)) {</span>
+<span class="nc" id="L450">            JOptionPane.showMessageDialog(null, &quot;Berhasil Menambahkan Data&quot;);  </span>
+<span class="nc" id="L451">            clearForm();</span>
+<span class="nc" id="L452">            loadTable();</span>
+        }
+        else {
+<span class="nc" id="L455">        JOptionPane.showMessageDialog(null, &quot;Gagal menambahkan Data&quot;);        </span>
+        }
+        
+<span class="nc" id="L458">        } catch (Exception e) {</span>
+<span class="nc" id="L459">            System.out.println(e.getMessage());</span>
+<span class="nc" id="L460">        }</span>
+<span class="nc" id="L461">    }//GEN-LAST:event_btn_submitActionPerformed</span>
+    
+        public String submit(String mesin, String brand, String nama, String type, String manufacture, String warna, int jumlah) {
+       
+        String total;
+        
+<span class="fc" id="L467">        total = mesin + brand + nama + type + manufacture + warna + jumlah;</span>
+        
+<span class="fc" id="L469">        return total;  </span>
+    }
+    
+    private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
+        try {
+        // TODO add your handling code here:
+<span class="nc" id="L475">        String mesin = cb_mesin.getSelectedItem().toString();</span>
+<span class="nc" id="L476">        String brand = cb_brand.getSelectedItem().toString();</span>
+<span class="nc" id="L477">        String nama = tf_nama.getText();</span>
+<span class="nc" id="L478">        String type = cb_type.getSelectedItem().toString();</span>
+        
+<span class="nc" id="L480">        Helper helper = new Helper();</span>
+<span class="nc" id="L481">        String manufacture = helper.parseDataToDatabase(dp_manufacture);</span>
+<span class="nc" id="L482">        String warna = tf_warna.getText();</span>
+<span class="nc" id="L483">        String jumlah = tf_jumlah.getText();</span>
+        
+<span class="nc" id="L485">        String sql = &quot;UPDATE motor set mesin = ?, brand = ?, name = ?, types = ?, &quot;</span>
+                + &quot;manufacture = ?, color = ?, jumlah = ? WHERE id_motor = ?&quot;;
+        
+<span class="nc" id="L488">        Map&lt;Integer, Object&gt; map = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L489">        map.put(1, mesin);</span>
+<span class="nc" id="L490">        map.put(2, brand);</span>
+<span class="nc" id="L491">        map.put(3, nama);</span>
+<span class="nc" id="L492">        map.put(4, type);</span>
+<span class="nc" id="L493">        map.put(5, manufacture);</span>
+<span class="nc" id="L494">        map.put(6, warna);</span>
+<span class="nc" id="L495">        map.put(7, jumlah);</span>
+<span class="nc" id="L496">        map.put(8, this.motor_id);</span>
+        
+<span class="nc bnc" id="L498" title="All 2 branches missed.">        if(controller.preparedStatement(map, sql)){</span>
+<span class="nc" id="L499">            clearForm();</span>
+<span class="nc" id="L500">            loadTable();</span>
+<span class="nc" id="L501">            JOptionPane.showMessageDialog(null, &quot;Berhasil Merubah Data&quot;);</span>
+        } 
+        else {
+<span class="nc" id="L504">            JOptionPane.showMessageDialog(null, &quot;Gagal Merubah Data&quot;);</span>
+        }
+        
+<span class="nc" id="L507">        } catch (Exception e) {</span>
+<span class="nc" id="L508">            System.err.println(e.getMessage());</span>
+<span class="nc" id="L509">        }</span>
+<span class="nc" id="L510">    }//GEN-LAST:event_btn_updateActionPerformed</span>
+
+    public String update(String mesin, String brand, String nama, String type, String manufacture, String warna, int jumlah) {
+       
+        String total;
+        
+<span class="fc" id="L516">        total = mesin + brand + nama + type + manufacture + warna + jumlah;</span>
+        
+<span class="fc" id="L518">        return total;  </span>
+    }
+    
+    private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
+        try {
+            // TODO add your handling code here:
+<span class="nc" id="L524">            Helper helper = new Helper();</span>
+<span class="nc" id="L525">            String manufacture = helper.parseDataToDatabase(dp_manufacture);</span>
+
+<span class="nc" id="L527">            String sql = &quot;DELETE FROM motor WHERE id_motor = ?&quot;;</span>
+
+<span class="nc" id="L529">            Map&lt;Integer, Object&gt; map = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L530">            map.put(1, this.motor_id);</span>
+
+<span class="nc bnc" id="L532" title="All 2 branches missed.">            if(controller.preparedStatement(map, sql)){</span>
+<span class="nc" id="L533">                clearForm();</span>
+<span class="nc" id="L534">                loadTable();</span>
+<span class="nc" id="L535">                JOptionPane.showMessageDialog(null, &quot;Berhasil Menghapus Data&quot;);</span>
+            }
+            else{
+<span class="nc" id="L538">                JOptionPane.showMessageDialog(null, &quot;Gagal Menghapus Data&quot;);</span>
+            }    
+<span class="nc" id="L540">        } catch (Exception e) {</span>
+<span class="nc" id="L541">            System.err.println(e.getMessage());</span>
+<span class="nc" id="L542">        }</span>
+<span class="nc" id="L543">    }//GEN-LAST:event_btn_deleteActionPerformed</span>
+
+    public String delete(String mesin, String brand, String nama, String type, String manufacture, String warna, int jumlah) {
+       
+        String total;
+        
+<span class="fc" id="L549">        total = mesin + brand + nama + type + manufacture + warna + jumlah;</span>
+        
+<span class="fc" id="L551">        return total;  </span>
+    }
+    
+    private void btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_searchActionPerformed
+        // TODO add your handling code here:
+<span class="nc" id="L556">        String search = tf_search.getText();</span>
+<span class="nc" id="L557">        String sql = &quot;SELECT * FROM motor WHERE mesin LIKE '%&quot; + search +&quot;%';&quot;;</span>
+<span class="nc" id="L558">        controller.get(tb_motor, sql);</span>
+<span class="nc" id="L559">    }//GEN-LAST:event_btn_searchActionPerformed</span>
+
+    public String searchMesin(String mesin) {
+<span class="nc" id="L562">        return mesin;  </span>
+    }
+    
+    private void btn_search1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_search1ActionPerformed
+        // TODO add your handling code here:
+<span class="nc" id="L567">        String search = tf_search.getText();</span>
+<span class="nc" id="L568">        String sql = &quot;SELECT * FROM motor WHERE brand LIKE '%&quot;+ search +&quot;%';&quot;;</span>
+<span class="nc" id="L569">        controller.get(tb_motor, sql);</span>
+<span class="nc" id="L570">    }//GEN-LAST:event_btn_search1ActionPerformed</span>
+
+    public String searchBrand(String brand) {
+<span class="nc" id="L573">        return brand;  </span>
+    }
+    
+    private void cb_mesinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_mesinActionPerformed
+        // TODO add your handling code here:
+<span class="fc" id="L578">    }//GEN-LAST:event_cb_mesinActionPerformed</span>
+
+    private void btn_ambilMotorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ambilMotorActionPerformed
+        // TODO add your handling code here:
+<span class="nc" id="L582">        TakeMotor bm = new TakeMotor();</span>
+<span class="nc" id="L583">        bm.setVisible(true);</span>
+<span class="nc" id="L584">        this.setVisible(false);</span>
+             
+<span class="nc" id="L586">    }//GEN-LAST:event_btn_ambilMotorActionPerformed</span>
+
+    private void tf_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_searchActionPerformed
+        // TODO add your handling code here:
+<span class="nc" id="L590">    }//GEN-LAST:event_tf_searchActionPerformed</span>
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //&lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot; Look and feel setting code (optional) &quot;&gt;
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+<span class="pc bpc" id="L602" title="1 of 2 branches missed.">            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {</span>
+<span class="fc bfc" id="L603" title="All 2 branches covered.">                if (&quot;Nimbus&quot;.equals(info.getName())) {</span>
+<span class="fc" id="L604">                    javax.swing.UIManager.setLookAndFeel(info.getClassName());</span>
+<span class="fc" id="L605">                    break;</span>
+                }
+            }
+<span class="nc" id="L608">        } catch (ClassNotFoundException ex) {</span>
+<span class="nc" id="L609">            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
+<span class="nc" id="L610">        } catch (InstantiationException ex) {</span>
+<span class="nc" id="L611">            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
+<span class="nc" id="L612">        } catch (IllegalAccessException ex) {</span>
+<span class="nc" id="L613">            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
+<span class="nc" id="L614">        } catch (javax.swing.UnsupportedLookAndFeelException ex) {</span>
+<span class="nc" id="L615">            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
+<span class="pc" id="L616">        }</span>
+        //&lt;/editor-fold&gt;
+
+        /* Create and display the form */
+<span class="fc" id="L620">        java.awt.EventQueue.invokeLater(new Runnable() {</span>
+            public void run() {
+<span class="fc" id="L622">                new MainFrame().setVisible(true);</span>
+<span class="fc" id="L623">            }</span>
+        });
+<span class="fc" id="L625">    }</span>
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_ambilMotor;
+    private javax.swing.JButton btn_delete;
+    private javax.swing.JButton btn_search;
+    private javax.swing.JButton btn_search1;
+    private javax.swing.JButton btn_submit;
+    private javax.swing.JButton btn_update;
+    private javax.swing.JComboBox&lt;String&gt; cb_brand;
+    private javax.swing.JComboBox&lt;String&gt; cb_mesin;
+    private javax.swing.JComboBox&lt;String&gt; cb_type;
+    private org.joda.time.DateTime dateTime1;
+    private org.joda.time.DateTime dateTime2;
+    private org.joda.time.DateTime dateTime3;
+    private org.joda.time.DateTime dateTime4;
+    private org.joda.time.DateTime dateTime5;
+    private org.joda.time.DateTime dateTime6;
+    private org.joda.time.DateTime dateTime7;
+    private org.jdesktop.swingx.JXDatePicker dp_manufacture;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tb_motor;
+    private javax.swing.JTextField tf_jumlah;
+    private javax.swing.JTextField tf_nama;
+    private javax.swing.JTextField tf_search;
+    private javax.swing.JTextField tf_warna;
+    // End of variables declaration//GEN-END:variables
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

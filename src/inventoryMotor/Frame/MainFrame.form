@@ -359,6 +359,9 @@
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="tf_search">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tf_searchActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel8">
           <Properties>
@@ -370,7 +373,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="btn_search">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Cari dengan Nama"/>
+            <Property name="text" type="java.lang.String" value="Cari nomor mesin"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_searchActionPerformed"/>
